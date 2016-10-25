@@ -23,7 +23,7 @@ var app = {
             cordova.plugins.barcodeScanner.scan(
                 function(result) {
                     if (!result.cancelled) {
-                        localStorage.barcode=result.text;
+                        localStorage.barcode = result.text;
                     }
                     // alert("We got a barcode\n" +
                     //     "Result: " + result.text + "\n" +
@@ -46,7 +46,7 @@ var app = {
         });
 
 
-            var parentElement = document.getElementById(id);
+        var parentElement = document.getElementById(id);
         var listeningElement = parentElement.querySelector('.listening');
         var receivedElement = parentElement.querySelector('.received');
 
