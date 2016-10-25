@@ -40,10 +40,13 @@ var app = {
         document.getElementById("scan").addEventListener("click", function() {
             cordova.plugins.barcodeScanner.scan(
                 function(result) {
-                    alert("We got a barcode\n" +
-                        "Result: " + result.text + "\n" +
-                        "Format: " + result.format + "\n" +
-                        "Cancelled: " + result.cancelled);
+                    if (!result.cancelled) {
+                        localStorage.barcode =result.text;
+                    }
+                    // alert("We got a barcode\n" +
+                    //     "Result: " + result.text + "\n" +
+                    //     "Format: " + result.format + "\n" +
+                    //     "Cancelled: " + result.cancelled);
                 },
                 function(error) {
                     alert("Scanning failed: " + error);
@@ -51,13 +54,17 @@ var app = {
                 {
                     "preferFrontCamera": false, // iOS and Android
                     "showFlipCameraButton": true, // iOS and Android
-                    "prompt": "Place a barcode inside the scan area" // supported on Android only
+                    "prompt": "Bitte den Barcode scannen!" // supported on Android only
                 });
 
         });
+        document.getElementById("get").addEventListener("click", function() {
+            console.log(localStorage.barcode);
+            alert(localStorage.barcode);
+        });
 
 
-        var parentElement = document.getElementById(id);
+            var parentElement = document.getElementById(id);
         var listeningElement = parentElement.querySelector('.listening');
         var receivedElement = parentElement.querySelector('.received');
 
